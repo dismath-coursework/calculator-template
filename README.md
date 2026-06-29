@@ -26,7 +26,7 @@
 ## Структура репозитория тоже под вопросом
 ```
 30101_Martynenko-Anna/
-├── CMakeLists.txt         ← не трогать        
+├── CMakeLists.txt      
 ├── src/
 │   ├── BigCalculator.h     
 │   └── BigCalculator.cpp   
