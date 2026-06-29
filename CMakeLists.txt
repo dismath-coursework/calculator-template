@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CALC_SOURCES
-    # сюда нужо добавлять пути к исходным файлам, например
+    # вся реализация должна находиться здесь, допустимы только вспомогательные заголовочные файлы
     src/BigCalculator.cpp
 )
 
