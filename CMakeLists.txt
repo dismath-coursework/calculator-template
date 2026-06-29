@@ -4,9 +4,12 @@ project(BigCalculator CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_library(CalcCore STATIC
+set(CALC_SOURCES
+    # сюда нужо добавлять пути к исходным файлам, например
     src/BigCalculator.cpp
 )
+
+add_library(CalcCore STATIC ${CALC_SOURCES})
 target_include_directories(CalcCore PUBLIC src/)
 
 add_executable(Calculator
