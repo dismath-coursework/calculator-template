@@ -53,7 +53,7 @@ jobs:
         - uses: actions/checkout@v4
 
         - name: Run hidden test suite
-          uses: dismath-coursework/testing-module-action@main
+          uses: dismath-coursework/testing-module-action@v1
           with:
             alphabet: "a,b,d,f,i,k,g,j,h,e,c"   # TODO: передать алфавит своего варианта
             student-source-dir: src
