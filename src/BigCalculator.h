@@ -6,6 +6,7 @@ class BigCalculator
 {
 public:
     BigCalculator();
+    bool normalSize; // true, когда нет превышения 8 разрядов 
 
     // или просто перечислить сигнатуры методов, которые должны быть реализованы студентом:
     // add, subtract, multiply, division, pow, gcd, lcm

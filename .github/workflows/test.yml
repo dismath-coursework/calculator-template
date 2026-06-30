@@ -1,0 +1,60 @@
+name: Calculator Tests
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  check-deadline:
+    name: Check deadline & commit limit
+    runs-on: ubuntu-latest
+    outputs:
+      allowed: ${{ steps.check.outputs.allowed }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: check
+        env:
+          DEADLINE: ${{ vars.DEADLINE }}
+          COMMIT_LIMIT: ${{ vars.COMMIT_LIMIT }}
+        run: |
+          ALLOWED=true
+
+          if [ -n "$DEADLINE" ]; then
+            NOW_EPOCH=$(date -u +%s)
+            DEADLINE_EPOCH=$(date -u -d "$DEADLINE" +%s 2>/dev/null)
+            if [ -z "$DEADLINE_EPOCH" ]; then
+              echo "::warning::Не удалось распознать DEADLINE='$DEADLINE'"
+            elif [ "$NOW_EPOCH" -gt "$DEADLINE_EPOCH" ]; then
+              echo "::error::Дедлайн прошёл ($DEADLINE). Тесты не запускаются."
+              ALLOWED=false
+            fi
+          fi
+
+          if [ -n "$COMMIT_LIMIT" ]; then
+            COUNT=$(git rev-list --count HEAD)
+            echo "Текущее количество коммитов: $COUNT (лимит: $COMMIT_LIMIT)"
+            if [ "$COUNT" -gt "$COMMIT_LIMIT" ]; then
+              echo "::error::Превышен лимит коммитов ($COUNT > $COMMIT_LIMIT)."
+              ALLOWED=false
+            fi
+          fi
+
+          echo "allowed=$ALLOWED" >> "$GITHUB_OUTPUT"
+
+  test-all:
+      name: "Run all tests"
+      needs: check-deadline
+      if: needs.check-deadline.outputs.allowed == 'true'
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+
+        - name: Run hidden test suite
+          uses: dismath-coursework/testing-module-action@v1
+          with:
+            alphabet: "a,b,d,f,i,k,g,j,h,e,c"   # TODO: передать алфавит своего варианта
+            student-source-dir: src
+            internal-token: ${{ secrets.TESTSUITE_INTERNAL_TOKEN }}

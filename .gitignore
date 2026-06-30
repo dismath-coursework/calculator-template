@@ -1,0 +1,9 @@
+build/
+*.o
+*.exe
+*.out
+test_results.xml
+.vscode/
+.idea/
+CMakeFiles/
+CMakeCache.txt
