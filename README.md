@@ -19,7 +19,9 @@
 </p>
 
 5. Клонировать репозиторий на свою машину
-6. Keep calm and enjoy coding :)
+6. в .github/workflows/test.yml вписать свой алфавит в `jobs: test-all: - name: Run hidden test suite with: alphabet`
+
+7. Keep calm and enjoy coding :)
 
 Наверное нужно что-то сказать про CMake (хотя бы о том, что свои файлы .cpp тоже надо добавлять)  или не надо..
 
@@ -34,7 +36,7 @@
 │   └── main.cpp          
 └── .github/
     └── workflows/
-        └── test.yml        ← не трогать
+        └── test.yml      
 ```
 
 ## Как отправить на проверку и посмотреть результаты
