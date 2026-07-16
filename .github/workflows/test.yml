@@ -24,6 +24,7 @@ jobs:
     name: Run all tests
     needs: check-deadline
     runs-on: ubuntu-latest
+    timeout-minutes: 1
 
     steps:
       - uses: actions/checkout@v4
