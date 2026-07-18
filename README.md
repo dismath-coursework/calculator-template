@@ -19,15 +19,13 @@
 </p>
 
 5. Клонировать репозиторий на свою машину
-6. в .github/workflows/test.yml вписать свой алфавит в `jobs: test-all: - name: Run hidden test suite with: alphabet`
-
-7. Keep calm and enjoy coding :)
-
-Наверное нужно что-то сказать про CMake (хотя бы о том, что свои файлы .cpp тоже надо добавлять)  или не надо..
+6. в .github/workflows/test.yml вписать свой алфавит, максимальное и минимальное возможное значение в `jobs: test-all: - name: Run hidden test suite with: alphabet; minimum; maximum`
+7. Изменить свой CMakeLists.txt, если необходимо добавить файлы в сборку
+8. Keep calm and enjoy coding :)
 
 И про токен порешать
 
-## Структура репозитория тоже под вопросом
+## Структура репозитория нужна ли?
 ```
 30101_Martynenko-Anna/
 ├── CMakeLists.txt      
